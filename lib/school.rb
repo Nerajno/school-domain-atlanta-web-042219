@@ -1,30 +1,33 @@
 require 'pry'
 
 # code here!
+
 class School
-    attr_accessor :school, :roster
+    attr_accessor :roster, :school
+    attr_reader :name
+    
+    NEW = []
 
     def initialize(name)
-        @roster= {}
-        @school = school
-
+        @roster = {}
+        @school = school 
     end
 
-    def add_student(student, grade)
-           roster[grade] ||= []
-           roster[grade] << student
+    def add_student(student_name, grade)
+        roster[grade] ||= []
+        roster[grade]<< student_name
     end
-
 
     def grade(grade)
-        roster.collect do |key, val|
-            if grade ==key
-                return val
-            end
-        end
+        # binding.pry
+        roster[grade]
     end
 
     def sort
-        @roster.sort
+        sorted = {}
+        roster.each do |grade, student|
+         sorted[grade]= student.sort
+        end
+        sorted
     end
 end
